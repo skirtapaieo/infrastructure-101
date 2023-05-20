@@ -25,8 +25,8 @@ So how do we do this? What can we learn from it?
 - we will write a microservice in Node.js that will be deployed to all the cloud platforms 
 - Create a dockerfile to encapsulate the services (alternative is to use serverless - but we do a first try)
 - Create a terraform configuration file (.tf) to describe the infrastructure required on each platform (AWS, GCP and Azure)
-- Setup Github Actiosn to automate the build of the docker image and deployment of infrastructure/service (workflow.yml) - checkout code, build docker image, push image to registry, run terraform..)
-
+- Setup Github Actions to automate the build of the docker image and deployment of infrastructure/service (workflow.yml) - checkout code, build docker image, push image to registry, run terraform..)
+-- test
 
 
 # retrospective - first pass 
