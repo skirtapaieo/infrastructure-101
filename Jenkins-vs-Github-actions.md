@@ -1,4 +1,4 @@
-Here's a comparison table in Markdown format that contrasts GitHub Actions (which is a part of GitHub) and Jenkins in the context of DevOps:
+Here's a comparison table that contrasts GitHub Actions (which is a part of GitHub) and Jenkins in the context of DevOps:
 
 |   | Jenkins | GitHub Actions |
 | - | - | - |
