@@ -1,9 +1,1 @@
-# Navigate to your repository's root directory
-cd /path/to/your/repository
-
-# Create the .github/workflows directory
-mkdir -p .github/workflows
-
-# Create the workflow.yml file
-touch .github/workflows/workflow.yml
 
