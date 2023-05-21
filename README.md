@@ -197,6 +197,64 @@ resource "azurerm_virtual_machine" "example" {
 
 ``` 
 
+## Setup Github Actions 
+
+The following cretest the following workflow: 
+- Check out code 
+- Build docker image 
+- Push images to (imaginary) Docker public registry (like DockerHub) 
+
+```yaml 
+name: CI/CD pipeline
+
+on:
+  push:
+    branches: [ main ]
+
+env:
+  TF_VERSION: 1.0.5
+  DOCKER_IMAGE_NAME: your-docker-image-name
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKER_HUB_USERNAME }}
+        password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v2
+      with:
+        context: .
+        push: true
+        tags: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }}:latest
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: ${{ env.TF_VERSION }}
+
+    - name: Terraform Initialize
+      run: terraform init
+
+    - name: Terraform Validate
+      run: terraform validate
+
+    - name: Terraform Plan
+      run: terraform plan
+
+    - name: Terraform Apply
+      run: terraform apply -auto-approve
+
+```
+
+
 
 
 
