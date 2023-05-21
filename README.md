@@ -108,7 +108,7 @@ The microservice will run on http://localhost:3000
 
 ## Create terraform file - for AWS, Azure och Google Cloud
 
-- AWS: 
+- AWS
 ```hcl 
 provider "aws" {
   region = "us-west-2"
@@ -124,7 +124,7 @@ resource "aws_instance" "example" {
 }
 ```
 
-- Google cloud: 
+- Google cloud 
 ```hcl 
 provider "google" {
   project = "my-project-id"
@@ -148,7 +148,7 @@ resource "google_compute_instance" "default" {
 }
 ``` 
 
-Azure: 
+- Azure 
 
 ```hcl 
 provider "azurerm" {
