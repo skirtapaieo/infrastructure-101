@@ -28,7 +28,7 @@ So how do we do this? What can we learn from it?
 - Setup Github Actions to automate the build of the docker image and deployment of infrastructure/service (workflow.yml) - checkout code, build docker image, push image to registry, run terraform..)
 - Push changes - committing microservices, dockerfile, terraformfile, github actions to the github repo - will lead GitHub actions to build and deploy service 
 
-## Hello World! 
+## Hello World microservice 
 
 ```node 
 // Import the express module
