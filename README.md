@@ -64,7 +64,7 @@ npm install express
 ```
 The microservice is run by "node hello-world.js" 
 
-## Create a Docker file (to encapsulate service)
+## Create a Docker file (to encapsulate HelloWorld service)
 
 First write documentation in docker.md - then do the docker-file: 
 
@@ -91,7 +91,19 @@ EXPOSE 3000
 CMD [ "node", "app.js" ]
 ```
 
+To build an Docker image from the docker file: 
 
+```bash
+docker build -t hello-world .
+```
+
+To run the Docker image: 
+
+```bash
+docker run -p 3000:3000 hello-world
+
+```
+The microservice will run on http://localhost:3000
 
 
 
