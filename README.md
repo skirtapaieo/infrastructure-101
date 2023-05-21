@@ -64,6 +64,33 @@ npm install express
 ```
 The microservice is run by "node hello-world.js" 
 
+## Create a Docker file (to encapsulate service)
+
+First write documentation in docker.md - then do the docker-file: 
+
+```docker 
+# Use an official Node.js runtime as the base image
+FROM node:14
+
+# Set the working directory in the container to /app
+WORKDIR /app
+
+# Copy the package.json and package-lock.json files into the container
+COPY package*.json ./
+
+# Install the application dependencies inside the container
+RUN npm install
+
+# Copy the rest of your application's source code into the container
+COPY . .
+
+# Expose port 3000 in the container
+EXPOSE 3000
+
+# Define the command to run your app using CMD which defines your runtime
+CMD [ "node", "app.js" ]
+```
+
 
 
 
