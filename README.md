@@ -106,6 +106,98 @@ docker run -p 3000:3000 hello-world
 The microservice will run on http://localhost:3000
 
 
+## Create terraform file - for AWS, Azure och Google Cloud
+
+- AWS: 
+```hcl 
+provider "aws" {
+  region = "us-west-2"
+}
+
+resource "aws_instance" "example" {
+  ami           = "ami-0c94855ba95c574c8"
+  instance_type = "t2.micro"
+
+  tags = {
+    Name = "example-instance"
+  }
+}
+```
+
+- Google cloud: 
+```hcl 
+provider "google" {
+  project = "my-project-id"
+  region  = "us-central1"
+  zone    = "us-central1-c"
+}
+
+resource "google_compute_instance" "default" {
+  name         = "test-instance"
+  machine_type = "n1-standard-1"
+
+  boot_disk {
+    initialize_params {
+      image = "debian-cloud/debian-9"
+    }
+  }
+
+  network_interface {
+    network = "default"
+  }
+}
+``` 
+
+Azure: 
+
+```hcl 
+provider "azurerm" {
+  features {}
+}
+
+resource "azurerm_resource_group" "example" {
+  name     = "example-resources"
+  location = "West Europe"
+}
+
+resource "azurerm_virtual_machine" "example" {
+  name                  = "example-vm"
+  location              = azurerm_resource_group.example.location
+  resource_group_name   = azurerm_resource_group.example.name
+  network_interface_id  = azurerm_network_interface.example.id
+  vm_size               = "Standard_D2s_v3"
+  
+  delete_os_disk_on_termination    = true
+  delete_data_disks_on_termination = true
+
+  os_disk {
+    caching              = "ReadWrite"
+    create_option        = "FromImage"
+    managed_disk_type    = "Premium_LRS"
+    name                 = "osdisk-example"
+  }
+
+  os_profile {
+    computer_name  = "hostname"
+    admin_username = "testadmin"
+    admin_password = "Password1234!"
+  }
+
+  os_profile_linux_config {
+    disable_password_authentication = false
+  }
+
+  source_image_reference {
+    publisher = "Canonical"
+    offer     = "UbuntuServer"
+    sku       = "16.04-LTS"
+    version   = "latest"
+  }
+}
+
+``` 
+
+
 
 
 
