@@ -200,9 +200,21 @@ resource "azurerm_virtual_machine" "example" {
 ## Setup Github Actions 
 
 The following cretest the following workflow: 
-- Check out code 
-- Build docker image 
-- Push images to (imaginary) Docker public registry (like DockerHub) 
+- Checkout code: This step checks out your repository so the workflow can access it.
+
+- Log in to Docker Hub: This step logs in to Docker Hub using your credentials. You should store these as secrets in your GitHub repository settings.
+
+- Build and push Docker image: This step builds a Docker image from your Dockerfile, and pushes it to Docker Hub. It uses the Docker build-push action, and pushes to the repository and image name you specify.
+
+- Setup Terraform: This step sets up Terraform using the version you specify.
+
+- Terraform Initialize: This step initializes your Terraform configuration.
+
+- Terraform Validate: This step validates your Terraform configuration.
+
+- Terraform Plan: This step creates an execution plan for Terraform.
+
+- Terraform Apply: This step applies the Terraform plan to create your infrastructure. The -auto-approve option is used to avoid interactive approval of the plan.
 
 ```yaml 
 name: CI/CD pipeline
