@@ -62,8 +62,7 @@ npm init -y
 npm install express
 
 ```
-
-# retrospective - first pass 
+The microservice is run by "node hello-world.js" 
 
 
 
